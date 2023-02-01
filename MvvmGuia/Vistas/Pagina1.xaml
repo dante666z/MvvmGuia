@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MvvmGuia.Vistas.Pagina1"
+             NavigationPage.HasNavigationBar="false">
+    <Grid BackgroundColor="#464FBC">
+        <StackLayout>
+            <Image Source="flecha.png"
+               VerticalOptions="Start"
+               HeightRequest="50"
+               HorizontalOptions="Start"
+               Margin="10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{ Binding VolverCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+        <ScrollView>
+            <StackLayout VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                    <Label Text="Numero 1: "
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"/>
+                    <Entry Placeholder="Excribe un numero"
+                       PlaceholderColor="White"
+                       HorizontalOptions="Start"
+                       TextColor="White"
+                       Text="{Binding N1}"
+                       Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                    <Label Text="Numero 2: "
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"/>
+                    <Entry Placeholder="Excribe un numero"
+                       PlaceholderColor="White"
+                       HorizontalOptions="Start"
+                       TextColor="White"
+                       Text="{Binding N2}"
+                       Keyboard="Numeric"/>
+                </StackLayout>
+                <Button Text="Sumar"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Command="{Binding SumarCommand}"
+                    TextTransform="None"
+                    BackgroundColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="5"/>
+                <Label TextColor="White"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="40"
+                   Text="{Binding R}"/>
+                <Button Text="Ir pagina 2"
+                    HorizontalOptions="Center"
+                    CornerRadius="5"
+                    BackgroundColor="White"
+                    FontAttributes="Bold"
+                    Command="{Binding NavegarPagina2Command}"/>
+                <StackLayout HorizontalOptions="Center"
+                         Orientation="Horizontal">
+                    <Label TextColor="White"
+                       FontAttributes="Bold"
+                       Text="Picker:"
+                       VerticalOptions="Center"/>
+                    <Picker TextColor="white"
+                        HorizontalOptions="FillAndExpand"
+                        Title="Seleccione una opción"
+                        TitleColor="White"
+                        SelectedItem="{Binding SeleccionarTipoUsuario}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Administrador</x:String>
+                                <x:String>Empleado</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center">
+                    <DatePicker TextColor="White"
+                            Date="{Binding Fecha, Mode=TwoWay}"
+                            MinimumDate="{Binding Fecha}">
+                        <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
+                    </DatePicker>
+                    <Label Text="{Binding ResultadoFecha}" 
+                       TextColor="white"
+                       FontAttributes="Bold"
+                       FontSize="20"/>
+                </StackLayout>
+                
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

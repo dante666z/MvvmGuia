@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             x:Class="MvvmGuia.Vistas.Pokemon.ListaPokemon"
+             NavigationPage.HasNavigationBar="false">
+
+    <Grid RowDefinitions="80, *"
+          BackgroundColor="#F5F6F6">
+        <Label Text="POKEDEX"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="28"
+               FontAttributes="bold"
+               TextColor="#FD8298"/>
+
+        <CollectionView BackgroundColor="#EAEDEC"
+                        Grid.Row="1"
+                        ItemsSource="{Binding ListaPokemon}"
+                        Margin="0, 0, 0, 0"
+                        x:Name="lista">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" 
+                                 Span="2"
+                                 HorizontalItemSpacing="10"
+                                 />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="100, *"
+                  Margin="0, 10, 0, -20">
+                        <Frame Grid.Row="1" WidthRequest="250"
+                       HorizontalOptions="Center"
+                       CornerRadius="15"
+                       Margin="10, -38, 10, 10"
+                       BackgroundColor="{Binding Colorfondo}"
+                               HasShadow="false">
+                            <!--BackgroundColor="#D8F3E9"-->
+                            <StackLayout Margin="0, 105, 0, 0">
+                                <Label Text="{Binding Nroorden}"/>
+                                <Label Text="{Binding Nombre}"
+                               CharacterSpacing="1"
+                               FontSize="20"
+                               Margin="0, 0, 0, 10"/>
+                                <Button Text="{Binding Poder}" 
+                                CornerRadius="30"
+                                HorizontalOptions="Start"
+                                TextTransform="None"
+                                HeightRequest="40"
+                                BackgroundColor="{Binding Colorpoder}" Command="{Binding Path=BindingContext.IrADetalleCommand,
+                                Source={x:Reference lista}}" CommandParameter="{Binding .}"/>
+                                <!--BackgroundColor="#29CE69"-->
+                            </StackLayout>
+
+                        </Frame>
+                        <!--Source="https://i.ibb.co/9vtwsYT/Bulbasaur.png"-->
+                        <Image Source="{Binding Icono}"
+                       Grid.RowSpan="2"
+                       HeightRequest="180"
+                       VerticalOptions="StartAndExpand"
+                               Margin="0, 20, 0, 0"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.IrADetalleCommand,
+                                Source={x:Reference lista}}" CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <sh:Shadows CornerRadius="50" Shades="{sh:SingleShade Offset='5, 0', Opacity=0.8, Color=#FFC545}"
+                     Grid.Row="1"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    VerticalOptions="End"
+                    HorizontalOptions="End"
+                    Margin="15">
+            <Button Text="+"
+                CornerRadius="50"
+                FontSize="20"
+                FontAttributes="Bold"
+                BackgroundColor="#F5CA55"
+                Command="{Binding IrARegistroCommand}"/>
+        </sh:Shadows>
+    </Grid>
+
+</ContentPage>

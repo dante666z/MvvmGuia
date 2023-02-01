@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MvvmGuia.Vistas.Pokemon.DetallePokemon"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:sharpnado = "clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0"
+                                 BindingContext="{Binding Source={RelativeSource AncestorType={x:Type Grid}}, Path=BindingContext}">
+                <GradientStop Color="{Binding pokemonRecibe.Colorpoder}" Offset="0.1"/>
+                <GradientStop Color="{Binding pokemonRecibe.Colorfondo}" Offset="0.8"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackLayout Margin="10, 0, 10, 0">
+            <Image Source="https://i.ibb.co/r6d9rnQ/volver.png" 
+                   HeightRequest="25"
+                   HorizontalOptions="Start"
+                   Margin="0, 20, 0, 0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{ Binding VolverCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{Binding pokemonRecibe.Nroorden}"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   TextColor="White"/>
+            <Image Source="{Binding pokemonRecibe.Icono}"
+                   HeightRequest="330"/>
+            <Label Text="{Binding pokemonRecibe.Nombre}"
+                   FontSize="40"
+                   FontAttributes="bold"
+                   TextColor="white"
+                   HorizontalOptions="Center"/>
+            <Grid RowDefinitions="auto, auto">
+                <sharpnado:MaterialFrame
+                    CornerRadius="15"
+                    MaterialBlurStyle="Light"
+                    MaterialTheme="AcrylicBlur"
+                    Grid.RowSpan="2"/>
+                <StackLayout Orientation="Horizontal"
+                             Margin="20, 10, 20, 10">
+                    <StackLayout>
+                        <Label Text="{Binding pokemonRecibe.Poder}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="White"/>
+                        <Label Text="Poder"
+                               TextColor="White"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="CenterAndExpand">
+                            <BoxView HeightRequest="30"
+                                 WidthRequest="30"
+                                 BackgroundColor="{Binding pokemonRecibe.Colorfondo}"
+                                 CornerRadius="15"
+                                 VerticalOptions="Center"/>
+                            <BoxView HeightRequest="30"
+                                 WidthRequest="30"
+                                 BackgroundColor="{Binding pokemonRecibe.Colorpoder}"
+                                 CornerRadius="15"
+                                 VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Label Text="Colores" 
+                               TextColor="White"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="{Binding pokemonRecibe.Nroorden}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="White"/>
+                        <Label Text="Orden"
+                               TextColor="White"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <Image Grid.Row="1" Source="https://i.ibb.co/0sPFvhS/pokemon.png"
+                       HeightRequest="50"/>
+            </Grid>
+            <Frame CornerRadius="30"
+                   Margin="0, 20, 0, 0"
+                   HeightRequest="65"
+                   HasShadow="false"
+                   Padding="0">
+                <Grid ColumnDefinitions="*, *">
+                    <Button Text="seguir"
+                            BackgroundColor="#5adf77"
+                            CornerRadius="30"
+                            FontAttributes="Bold"
+                            Margin="-5, 0, 0, 0"/>
+                    <StackLayout Grid.Column="1" Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="https://i.ibb.co/z67TBnR/tubo-de-sangre.png" 
+                                   HeightRequest="35"
+                                   Margin="0, 0, -10, 0"/>
+                            <Label Text="Youtube" 
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="https://i.ibb.co/31fxN7b/1200px-Charizard-SSBU.png" 
+                                   HeightRequest="35"/>
+                            <Label Text="fb" 
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>
